@@ -11,12 +11,18 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ComputerIcon from '@material-ui/icons/Computer';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
+import Chart from './Chart';
+import Table from './Table';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    paddingTop: '1rem'
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -29,6 +35,12 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth,
   },
+  paper: {
+    height: 400,
+    textAlign: 'center',
+
+    width: 400,
+  },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -37,9 +49,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function DashboardDrawer() {
+export default function DashboardDrawer({cpu, memory}) {
   const classes = useStyles();
-
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -72,8 +84,22 @@ export default function DashboardDrawer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-            {/* cpu line chart */}
-            {/* memory usage line chart */}
+            
+        <Grid container justify="center" spacing={2}>
+            <Grid item  xs={12} md={6} lg={6}>
+              <Paper className={classes.paper}>
+              <Chart data={cpu} title="CPU usage" />
+              </Paper>
+            </Grid>
+            <Grid item>
+            <Paper className={classes.paper}>
+            <Chart data={memory} title="Memory usage" />
+            </Paper>
+            </Grid>
+            <Grid item>
+            <Table data={{cpu, memory}} />
+            </Grid>
+          </Grid>
       </main>
     </div>
   );

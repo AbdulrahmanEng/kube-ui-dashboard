@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import Drawer from './components/Drawer';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <Drawer />
+      <Dashboard />
     </div>
   );
 }
