@@ -60,7 +60,6 @@ export default class Dashboard extends React.Component {
         clearInterval(this.updateID);
       }
     render(){
-        // console.log(this.state)
         return (
             <Drawer cpu={this.state.cpu} memory={this.state.memory} />
         );
